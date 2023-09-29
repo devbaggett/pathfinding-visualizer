@@ -43,7 +43,6 @@ const PathfindingVisualizer = () => {
         return newGrid;
     };
     
-    
     const clearAllAnimations = () => {
         grid.forEach(row => {
             row.forEach(node => {
@@ -168,11 +167,20 @@ const PathfindingVisualizer = () => {
         }, 50 * nodesInShortestPathOrder.length);
     };
     
+    const clearGrid = () => {
+        clearAllAnimations();
+        const newGrid = createInitialGrid();
+        setGrid(newGrid);
+    };
+    
     return (
         <div>
             <div className="controls">
                 <button onClick={visualizeDijkstra} disabled={isAnimating}>
                     Visualize Dijkstra's Algorithm
+                </button>
+                <button onClick={clearGrid} disabled={isAnimating}>
+                    Clear Grid
                 </button>
             </div>
             <div className="grid">
