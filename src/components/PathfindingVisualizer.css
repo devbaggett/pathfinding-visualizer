@@ -1,0 +1,15 @@
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;  /* Adjust as necessary for spacing */
+}
+
+.grid {
+    width: 90vw; /* Width of the entire grid */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row {
+    display: flex;
+}

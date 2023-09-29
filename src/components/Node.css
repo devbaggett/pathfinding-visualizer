@@ -1,0 +1,23 @@
+.node {
+    width: 1.8vw;
+    height: 1.8vw; /* Keeps it a square */
+    outline: 1px solid #6B6B6B;
+    box-sizing: border-box; /* This ensures the outline doesn't increase the size */
+    display: inline-block;
+}
+
+.node-start {
+    background-color: green;
+}
+
+.node-finish {
+    background-color: red;
+}
+
+.node-visited {
+    background-color: lightyellow;
+}
+
+.node-shortest-path {
+    background-color: aqua;
+}
