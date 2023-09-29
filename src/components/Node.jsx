@@ -1,9 +1,22 @@
 import "./Node.css";
 
 export const Node = (props) => {
-    const { id, className } = props;
+    const {
+        id,
+        className,
+        onMouseDown,
+        onMouseEnter,
+        onMouseUp,
+    } = props;
+    
     return (
-        <div id={id} className={className}>
-        </div>
+        <div
+            id={id}
+            className={className}
+            onMouseDown={onMouseDown}
+            onMouseEnter={onMouseEnter}
+            onMouseUp={onMouseUp}
+        ></div>
     );
 };
+

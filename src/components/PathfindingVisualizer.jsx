@@ -14,6 +14,35 @@ const PathfindingVisualizer = () => {
     const [visitedNodesInOrder, setVisitedNodesInOrder] = useState([]);
     const [nodesInShortestPathOrder, setNodesInShortestPathOrder] = useState([]);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [mouseIsPressed, setMouseIsPressed] = useState(false);
+    
+    const handleMouseDown = (row, col) => {
+        const newGrid = toggleWall(grid, row, col);
+        setGrid(newGrid);
+        setMouseIsPressed(true);
+    };
+    
+    const handleMouseEnter = (row, col) => {
+        if (!mouseIsPressed) return;
+        const newGrid = toggleWall(grid, row, col);
+        setGrid(newGrid);
+    };
+    
+    const handleMouseUp = () => {
+        setMouseIsPressed(false);
+    };
+    
+    const toggleWall = (grid, row, col) => {
+        const newGrid = grid.slice();
+        const node = newGrid[row][col];
+        const newNode = {
+            ...node,
+            isWall: !node.isWall,
+        };
+        newGrid[row][col] = newNode;
+        return newGrid;
+    };
+    
     
     const clearAllAnimations = () => {
         grid.forEach(row => {
@@ -25,6 +54,8 @@ const PathfindingVisualizer = () => {
                         nodeDiv.className += ' node-start';
                     } else if (node.isFinish) {
                         nodeDiv.className += ' node-finish';
+                    } else if (node.isWall) {
+                        nodeDiv.className += ' node-wall';
                     }
                 }
             });
@@ -39,6 +70,7 @@ const PathfindingVisualizer = () => {
             isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
             distance: (row === START_NODE_ROW && col === START_NODE_COL) ? 0 : Infinity,
             isVisited: false,
+            isWall: false,
             previousNode: null
         };
     };
@@ -75,7 +107,7 @@ const PathfindingVisualizer = () => {
         if (isAnimating) {
             return;
         }
-    
+        
         setIsAnimating(true); // Set animation flag
         clearAllAnimations(); // Clear existing animations
         
@@ -116,7 +148,7 @@ const PathfindingVisualizer = () => {
                 }
             }, 10 * i);
         }
-    }
+    };
     
     const animateShortestPath = (nodesInShortestPathOrder) => {
         for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
@@ -134,7 +166,7 @@ const PathfindingVisualizer = () => {
         setTimeout(() => {
             setIsAnimating(false);
         }, 50 * nodesInShortestPathOrder.length);
-    }
+    };
     
     return (
         <div>
@@ -148,19 +180,24 @@ const PathfindingVisualizer = () => {
                     return (
                         <div className="row" key={rowIdx}>
                             {currentRow.map((node, nodeIdx) => {
-                                const {isStart, isFinish, row, col} = node;
-        
+                                const { isStart, isFinish, row, col } = node;
+                                
                                 let className = "node";
                                 if (isStart) {
                                     className += ' node-start';
                                 } else if (isFinish) {
                                     className += ' node-finish';
+                                } else if (node.isWall) {
+                                    className += ' node-wall';
                                 }
-        
+                                
                                 return <Node
                                     key={nodeIdx}
                                     id={`node-${row}-${col}`}
                                     className={className}
+                                    onMouseDown={() => handleMouseDown(row, col)}
+                                    onMouseEnter={() => handleMouseEnter(row, col)}
+                                    onMouseUp={() => handleMouseUp()}
                                 />;
                             })}
                         </div>
