@@ -1,14 +1,49 @@
-.instruction-container {
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.instruction-container h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+.instructions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+    background-color: #2e3b4e;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.instructions span {
+    flex: 1;
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.1em;
+    color: #f1f1f1;
+    margin: 0 5px;
+    border-radius: 3px;
+    padding: 5px;
+    transition: background-color 0.3s;
+}
+
+.instructions span:nth-child(1) {
+    background-color: #d55a5a;
+}
+
+.instructions span:nth-child(2) {
+    background-color: #d5a55a;
+}
+
+.instructions span:nth-child(3) {
+    background-color: #5ad57a;
+}
+
+.instructions span:nth-child(4) {
+    background-color: #5a96d5;
+}
+
+.instructions span:hover {
+    opacity: 0.9;
 }
 
 .controls {
@@ -17,16 +52,75 @@
     margin-bottom: 20px;  /* Adjust as necessary for spacing */
 }
 
+.controls button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-right: 10px;
+}
+
+.controls button:last-child {
+    margin-right: 0;
+}
+
+.controls button:hover {
+    background-color: #2980b9;
+}
+
+.controls button:active {
+    transform: translateY(2px);
+}
+
+.controls button:disabled {
+    background-color: #a4c0d0;
+    cursor: not-allowed;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+}
+
+.node-start {
+    background-color: green;
+}
+
+.node-finish {
+    background-color: red;
+}
+
+.node-wall {
+    background-color: black;
+}
+
 .grid {
-    width: 90vw; /* Width of the entire grid */
+    width: 90vw;
     display: flex;
     flex-wrap: wrap;
 }
 
 .row {
     display: flex;
-}
-
-.node-wall {
-    background-color: black;
 }

@@ -6,14 +6,6 @@
     display: inline-block;
 }
 
-.node-start {
-    background-color: green;
-}
-
-.node-finish {
-    background-color: red;
-}
-
 .node-visited {
     background-color: lightyellow;
 }

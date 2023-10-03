@@ -175,17 +175,16 @@ const PathfindingVisualizer = () => {
     
     return (
         <div>
-            <div className="instruction-container">
-                <h3>How to Use</h3>
-                <ul>
-                    <li><strong>Draw Walls:</strong> Click and drag your mouse over the grid to create walls or obstacles.</li>
-                    <li><strong>Visualize Algorithm:</strong> Click the "Visualize Dijkstra's Algorithm" button to start the visualization. The algorithm will find the shortest path considering the walls you've drawn.</li>
-                    <li><strong>Clear Grid:</strong> Reset the grid to its initial state by clicking the "Clear Grid" button.</li>
-                </ul>
+            <h1>Dijkstra Pathfinding Visualizer</h1>
+            <div className="instructions">
+                <span>1. Click or drag on nodes to make walls.</span>
+                <span>2. Click on walls to remove them.</span>
+                <span>3. Use 'Visualize Path' to see the shortest path.</span>
+                <span>4. 'Clear Grid' resets everything.</span>
             </div>
             <div className="controls">
                 <button onClick={visualizeDijkstra} disabled={isAnimating}>
-                    Visualize Dijkstra's Algorithm
+                    Visualize Path
                 </button>
                 <button onClick={clearGrid} disabled={isAnimating}>
                     Clear Grid
@@ -219,6 +218,20 @@ const PathfindingVisualizer = () => {
                         </div>
                     );
                 })}
+            </div>
+            <div className="legend">
+                <div className="legend-item">
+                    <div className="legend-color node-start"></div>
+                    Start
+                </div>
+                <div className="legend-item">
+                    <div className="legend-color node-finish"></div>
+                    Finish
+                </div>
+                <div className="legend-item">
+                    <div className="legend-color node-wall"></div>
+                    Wall
+                </div>
             </div>
         </div>
     );
