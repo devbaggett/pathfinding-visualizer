@@ -175,6 +175,14 @@ const PathfindingVisualizer = () => {
     
     return (
         <div>
+            <div className="instruction-container">
+                <h3>How to Use</h3>
+                <ul>
+                    <li><strong>Draw Walls:</strong> Click and drag your mouse over the grid to create walls or obstacles.</li>
+                    <li><strong>Visualize Algorithm:</strong> Click the "Visualize Dijkstra's Algorithm" button to start the visualization. The algorithm will find the shortest path considering the walls you've drawn.</li>
+                    <li><strong>Clear Grid:</strong> Reset the grid to its initial state by clicking the "Clear Grid" button.</li>
+                </ul>
+            </div>
             <div className="controls">
                 <button onClick={visualizeDijkstra} disabled={isAnimating}>
                     Visualize Dijkstra's Algorithm
