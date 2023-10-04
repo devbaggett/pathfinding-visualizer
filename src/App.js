@@ -1,4 +1,4 @@
-import PathfindingVisualizer from './components/PathfindingVisualizer';
+import PathfindingVisualizer from './pages/PathfindingVisualizer/PathfindingVisualizer';
 import './App.css';
 
 function App() {

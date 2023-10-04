@@ -1,18 +1,19 @@
 import { useCallback, useEffect, useState } from 'react';
-import { dijkstra, getNodesInShortestPathOrder } from '../utils/algorithmsUtils';
+import { dijkstra, getNodesInShortestPathOrder } from '../../utils/algorithmsUtils';
 import {
     createInitialGrid,
     FINISH_NODE_COL,
     FINISH_NODE_ROW,
     START_NODE_COL,
     START_NODE_ROW,
-} from '../utils/gridSetupUtils';
-import { animateDijkstra, clearNodeAnimations, getNodeClassName } from '../utils/animationUtils';
-import { handleMouseDown, handleMouseEnter, handleMouseUp } from '../utils/gridInteractionsUtils';
-import Legend from './Legend';
-import Controls from './Controls';
-import Grid from './Grid';
-import Instructions from './Instructions';
+} from '../../utils/gridSetupUtils';
+import { animateDijkstra, clearNodeAnimations, getNodeClassName } from '../../utils/animationUtils';
+import { handleMouseDown, handleMouseEnter, handleMouseUp } from '../../utils/gridInteractionsUtils';
+import Legend from '../../components/Legend/Legend';
+import Controls from '../../components/Controls/Controls';
+import Grid from '../../components/Grid/Grid';
+import Instructions from '../../components/Instructions/Instructions';
+import "../../shared/common.css";
 import "./PathfindingVisualizer.css";
 
 const PathfindingVisualizer = () => {

@@ -1,0 +1,14 @@
+h1 {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all var(--base-transition) ease-out;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--neutral-color);
+}
+
+.loaded h1 {
+    opacity: 1;
+    transform: translateY(0);
+}

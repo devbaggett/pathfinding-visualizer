@@ -1,5 +1,5 @@
-import { Node } from './Node';
-import { getNodeClassName } from '../utils/animationUtils';
+import { Node } from '../Node/Node';
+import { getNodeClassName } from '../../utils/animationUtils';
 import "./Grid.css";
 
 const Grid = (props) => {
