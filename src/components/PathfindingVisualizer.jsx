@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { dijkstra, getNodesInShortestPathOrder } from '../utils/algorithmsUtils';
 import {
     createInitialGrid,
@@ -61,6 +61,18 @@ const PathfindingVisualizer = () => {
         setGrid(newGrid);
     };
     
+    const handleGridMouseDown = useCallback((row, col) => {
+        handleMouseDown(grid, row, col, setGrid, setMouseIsPressed);
+    }, [grid]);
+    
+    const handleGridMouseEnter = useCallback((row, col) => {
+        handleMouseEnter(grid, row, col, mouseIsPressed, setGrid);
+    }, [grid, mouseIsPressed]);
+    
+    const handleGridMouseUp = useCallback(() => {
+        handleMouseUp(setMouseIsPressed);
+    }, []);
+    
     return (
         <div>
             <h1>Dijkstra Pathfinding Visualizer</h1>
@@ -68,9 +80,9 @@ const PathfindingVisualizer = () => {
             <Controls visualizeDijkstra={visualizeDijkstra} clearGrid={clearGrid} isAnimating={isAnimating} />
             <Grid
                 grid={grid}
-                handleMouseDown={(row, col) => handleMouseDown(grid, row, col, setGrid, setMouseIsPressed)}
-                handleMouseEnter={(row, col) => handleMouseEnter(grid, row, col, mouseIsPressed, setGrid)}
-                handleMouseUp={() => handleMouseUp(setMouseIsPressed)}
+                onMouseDown={handleGridMouseDown}
+                onMouseEnter={handleGridMouseEnter}
+                onMouseUp={handleGridMouseUp}
             />
             <Legend />
         </div>

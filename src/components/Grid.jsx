@@ -5,9 +5,9 @@ import "./Grid.css";
 const Grid = (props) => {
     const {
         grid,
-        handleMouseDown,
-        handleMouseEnter,
-        handleMouseUp
+        onMouseDown,
+        onMouseEnter,
+        onMouseUp
     } = props;
     
     return (
@@ -23,9 +23,9 @@ const Grid = (props) => {
                                 key={nodeIdx}
                                 id={`node-${row}-${col}`}
                                 className={className}
-                                onMouseDown={() => handleMouseDown(row, col)}
-                                onMouseEnter={() => handleMouseEnter(row, col)}
-                                onMouseUp={handleMouseUp}
+                                onMouseDown={() => onMouseDown(row, col)}
+                                onMouseEnter={() => onMouseEnter(row, col)}
+                                onMouseUp={onMouseUp}
                             />
                         );
                     })}
