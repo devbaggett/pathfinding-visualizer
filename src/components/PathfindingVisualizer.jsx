@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Node } from './Node';
-import { dijkstra, getNodesInShortestPathOrder } from '../utils/dijkstra';
+import { dijkstra, getNodesInShortestPathOrder } from '../utils/algorithmsUtils';
 import {
     createInitialGrid,
     FINISH_NODE_COL,
     FINISH_NODE_ROW,
     START_NODE_COL,
     START_NODE_ROW,
-    toggleWall,
-} from '../utils/gridUtils';
+} from '../utils/gridSetupUtils';
 import { animateDijkstra, clearNodeAnimations, getNodeClassName } from '../utils/animationUtils';
+import { handleMouseDown, handleMouseEnter, handleMouseUp } from '../utils/gridInteractionsUtils';
 import "./PathfindingVisualizer.css";
 
 const PathfindingVisualizer = () => {
@@ -18,22 +18,6 @@ const PathfindingVisualizer = () => {
     const [nodesInShortestPathOrder, setNodesInShortestPathOrder] = useState([]);
     const [isAnimating, setIsAnimating] = useState(false);
     const [mouseIsPressed, setMouseIsPressed] = useState(false);
-    
-    const handleMouseDown = (row, col) => {
-        const newGrid = toggleWall(grid, row, col);
-        setGrid(newGrid);
-        setMouseIsPressed(true);
-    };
-    
-    const handleMouseEnter = (row, col) => {
-        if (!mouseIsPressed) return;
-        const newGrid = toggleWall(grid, row, col);
-        setGrid(newGrid);
-    };
-    
-    const handleMouseUp = () => {
-        setMouseIsPressed(false);
-    };
     
     useEffect(() => {
         setTimeout(() => {
@@ -103,14 +87,16 @@ const PathfindingVisualizer = () => {
                                 const { row, col } = node;
                                 const className = getNodeClassName(node);
                                 
-                                return <Node
-                                    key={nodeIdx}
-                                    id={`node-${row}-${col}`}
-                                    className={className}
-                                    onMouseDown={() => handleMouseDown(row, col)}
-                                    onMouseEnter={() => handleMouseEnter(row, col)}
-                                    onMouseUp={() => handleMouseUp()}
-                                />;
+                                return (
+                                    <Node
+                                        key={nodeIdx}
+                                        id={`node-${row}-${col}`}
+                                        className={className}
+                                        onMouseDown={() => handleMouseDown(grid, row, col, setGrid, setMouseIsPressed)}
+                                        onMouseEnter={() => handleMouseEnter(grid, row, col, mouseIsPressed, setGrid)}
+                                        onMouseUp={() => handleMouseUp(setMouseIsPressed)}
+                                    />
+                                );
                             })}
                         </div>
                     );
