@@ -232,6 +232,18 @@ const PathfindingVisualizer = () => {
                     <div className="legend-color node-wall"></div>
                     Wall
                 </div>
+                <div className="legend-item">
+                    <div className="legend-color node-shortest-path"></div>
+                    Shortest Path
+                </div>
+                <div className="legend-item">
+                    <div className="legend-color node-visited"></div>
+                    Visited
+                </div>
+                <div className="legend-item">
+                    <div className="legend-color node-unvisited"></div>
+                    Unvisited
+                </div>
             </div>
         </div>
     );

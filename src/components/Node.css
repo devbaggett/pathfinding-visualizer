@@ -5,11 +5,3 @@
     box-sizing: border-box; /* This ensures the outline doesn't increase the size */
     display: inline-block;
 }
-
-.node-visited {
-    background-color: lightyellow;
-}
-
-.node-shortest-path {
-    background-color: aqua;
-}

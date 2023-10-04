@@ -115,6 +115,18 @@ h1 {
     background-color: black;
 }
 
+.node-shortest-path {
+    background-color: aqua;
+}
+
+.node-visited {
+    background-color: lightyellow;
+}
+
+.node-unvisited {
+    background-color: #ffffff;
+}
+
 .grid {
     width: 90vw;
     display: flex;
