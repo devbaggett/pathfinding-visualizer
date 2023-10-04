@@ -1,7 +1,16 @@
 h1 {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.8s ease-out;
     text-align: center;
-    color: #333;
+    font-size: 2em;
     margin-bottom: 20px;
+    color: #333;
+}
+
+.loaded h1 {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .instructions {
@@ -18,7 +27,7 @@ h1 {
     flex: 1;
     text-align: center;
     font-weight: 900;
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: #f1f1f1;
     margin: 0 5px;
     border-radius: 3px;
@@ -43,13 +52,15 @@ h1 {
 }
 
 .instructions span:hover {
-    opacity: 0.9;
+    background-color: #354a66;
+    transform: scale(1.25) translateY(-5px);
+    transition: all 0.3s ease;
 }
 
 .controls {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;  /* Adjust as necessary for spacing */
+    margin-bottom: 20px;
 }
 
 .controls button {

@@ -91,6 +91,12 @@ const PathfindingVisualizer = () => {
     };
     
     useEffect(() => {
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, 100);
+    }, []);
+    
+    useEffect(() => {
         const initialGrid = createInitialGrid();
         setGrid(initialGrid);
     }, []);
@@ -175,7 +181,9 @@ const PathfindingVisualizer = () => {
     
     return (
         <div>
-            <h1>Dijkstra Pathfinding Visualizer</h1>
+            <h1>
+                Dijkstra Pathfinding Visualizer
+            </h1>
             <div className="instructions">
                 <span>1. Click or drag on nodes to make walls.</span>
                 <span>2. Click on walls to remove them.</span>
