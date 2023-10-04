@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Node } from './Node';
+import { dijkstra } from '../utils/dijkstra';
+import { getNodeClassName } from '../utils/utils';
+import {
+    createInitialGrid,
+    FINISH_NODE_COL,
+    FINISH_NODE_ROW,
+    START_NODE_COL,
+    START_NODE_ROW,
+    toggleWall,
+} from '../utils/gridUtils';
 import "./PathfindingVisualizer.css";
-import { dijkstra } from '../algorithms/dijkstra';
-
-// Define constants outside the component for easy modification
-const START_NODE_ROW = 10;
-const START_NODE_COL = 5;
-const FINISH_NODE_ROW = 10;
-const FINISH_NODE_COL = 45;
 
 const PathfindingVisualizer = () => {
     const [grid, setGrid] = useState([]);
@@ -32,71 +35,21 @@ const PathfindingVisualizer = () => {
         setMouseIsPressed(false);
     };
     
-    const toggleWall = (grid, row, col) => {
-        const newGrid = grid.slice();
-        const node = newGrid[row][col];
-        const newNode = {
-            ...node,
-            isWall: !node.isWall,
-        };
-        newGrid[row][col] = newNode;
-        return newGrid;
-    };
-    
     const clearAllAnimations = () => {
         grid.forEach(row => {
             row.forEach(node => {
                 const nodeDiv = document.getElementById(`node-${node.row}-${node.col}`);
                 if (nodeDiv) {
-                    nodeDiv.className = 'node';
-                    if (node.isStart) {
-                        nodeDiv.className += ' node-start';
-                    } else if (node.isFinish) {
-                        nodeDiv.className += ' node-finish';
-                    } else if (node.isWall) {
-                        nodeDiv.className += ' node-wall';
-                    }
+                    nodeDiv.className = getNodeClassName(node);
                 }
             });
         });
-    };
-    
-    const createNode = (col, row) => {
-        return {
-            col,
-            row,
-            isStart: row === START_NODE_ROW && col === START_NODE_COL,
-            isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
-            distance: (row === START_NODE_ROW && col === START_NODE_COL) ? 0 : Infinity,
-            isVisited: false,
-            isWall: false,
-            previousNode: null
-        };
-    };
-    
-    const createRow = (row) => {
-        const currentRow = [];
-        for (let col = 0; col < 50; col++) {
-            currentRow.push(createNode(col, row));
-        }
-        return currentRow;
-    };
-    
-    const createInitialGrid = () => {
-        const grid = [];
-        for (let row = 0; row < 20; row++) {
-            grid.push(createRow(row));
-        }
-        return grid;
     };
     
     useEffect(() => {
         setTimeout(() => {
             document.body.classList.add('loaded');
         }, 100);
-    }, []);
-    
-    useEffect(() => {
         const initialGrid = createInitialGrid();
         setGrid(initialGrid);
     }, []);
@@ -203,16 +156,8 @@ const PathfindingVisualizer = () => {
                     return (
                         <div className="row" key={rowIdx}>
                             {currentRow.map((node, nodeIdx) => {
-                                const { isStart, isFinish, row, col } = node;
-                                
-                                let className = "node";
-                                if (isStart) {
-                                    className += ' node-start';
-                                } else if (isFinish) {
-                                    className += ' node-finish';
-                                } else if (node.isWall) {
-                                    className += ' node-wall';
-                                }
+                                const { row, col } = node;
+                                const className = getNodeClassName(node);
                                 
                                 return <Node
                                     key={nodeIdx}
