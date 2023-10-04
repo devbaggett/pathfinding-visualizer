@@ -1,3 +1,24 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --alert-color: #d55a5a;
+  --warning-color: #d5a55a;
+  --success-color: #5ad57a;
+  --info-color: #5a96d5;
+  --light-text-color: #f1f1f1;
+  --dark-text-color: #777;
+  --neutral-color: #333;
+  --border-color: #6B6B6B;
+  --visited-node-color: lightyellow;
+  --finish-node-color: red;
+  --start-node-color: green;
+  --wall-node-color: black;
+  --shortest-path-node-color: aqua;
+  --unvisited-node-color: #ffffff;
+  --font-weight-bold: 900;
+  --base-transition: 0.3s;
+}
+
 *,
 *::after,
 *::before {
@@ -13,7 +34,6 @@ html {
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  /*font-size: 16px;*/
   line-height: 1.7;
   color: #777;
   padding: 3rem;

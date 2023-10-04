@@ -1,7 +1,7 @@
 .node {
     width: 1.8vw;
-    height: 1.8vw; /* Keeps it a square */
-    outline: 1px solid #6B6B6B;
-    box-sizing: border-box; /* This ensures the outline doesn't increase the size */
+    height: 1.8vw;
+    outline: 1px solid var(--border-color);
+    box-sizing: border-box;
     display: inline-block;
 }
