@@ -1,0 +1,21 @@
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    color: var(--neutral-color);
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+}
