@@ -3,7 +3,6 @@ export const START_NODE_COL = 5;
 export const FINISH_NODE_ROW = 10;
 export const FINISH_NODE_COL = 45;
 
-// Create a single node
 export function createNode(col, row) {
     return {
         col,
@@ -17,7 +16,6 @@ export function createNode(col, row) {
     };
 }
 
-// Create a row of nodes
 export function createRow(row) {
     const currentRow = [];
     for (let col = 0; col < 50; col++) {
@@ -26,7 +24,6 @@ export function createRow(row) {
     return currentRow;
 }
 
-// Create the initial grid
 export function createInitialGrid() {
     const grid = [];
     for (let row = 0; row < 20; row++) {
@@ -35,7 +32,6 @@ export function createInitialGrid() {
     return grid;
 }
 
-// Toggle a wall in the grid
 export function toggleWall(grid, row, col) {
     const newGrid = grid.slice();
     const node = newGrid[row][col];

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Node } from './Node';
-import { dijkstra } from '../utils/dijkstra';
-import { getNodeClassName } from '../utils/utils';
+import { dijkstra, getNodesInShortestPathOrder } from '../utils/dijkstra';
 import {
     createInitialGrid,
     FINISH_NODE_COL,
@@ -10,6 +9,7 @@ import {
     START_NODE_ROW,
     toggleWall,
 } from '../utils/gridUtils';
+import { animateDijkstra, clearNodeAnimations, getNodeClassName } from '../utils/animationUtils';
 import "./PathfindingVisualizer.css";
 
 const PathfindingVisualizer = () => {
@@ -35,17 +35,6 @@ const PathfindingVisualizer = () => {
         setMouseIsPressed(false);
     };
     
-    const clearAllAnimations = () => {
-        grid.forEach(row => {
-            row.forEach(node => {
-                const nodeDiv = document.getElementById(`node-${node.row}-${node.col}`);
-                if (nodeDiv) {
-                    nodeDiv.className = getNodeClassName(node);
-                }
-            });
-        });
-    };
-    
     useEffect(() => {
         setTimeout(() => {
             document.body.classList.add('loaded');
@@ -60,14 +49,13 @@ const PathfindingVisualizer = () => {
         }
     }, [visitedNodesInOrder, nodesInShortestPathOrder]);
     
-    // Handle button click for visualizing Dijkstra's Algorithm
     const visualizeDijkstra = () => {
         if (isAnimating) {
             return;
         }
         
-        setIsAnimating(true); // Set animation flag
-        clearAllAnimations(); // Clear existing animations
+        setIsAnimating(true);
+        clearNodeAnimations(grid, getNodeClassName);
         
         const startNode = grid[START_NODE_ROW][START_NODE_COL];
         const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
@@ -76,58 +64,14 @@ const PathfindingVisualizer = () => {
         
         setVisitedNodesInOrder(visitedNodesInOrder);
         setNodesInShortestPathOrder(nodesInShortestPathOrder);
-    };
-    
-    const getNodesInShortestPathOrder = (finishNode) => {
-        const nodesInShortestPathOrder = [];
-        let currentNode = finishNode;
-        while (currentNode !== null) {
-            nodesInShortestPathOrder.unshift(currentNode);
-            currentNode = currentNode.previousNode;
-        }
-        return nodesInShortestPathOrder;
-    };
-    
-    const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {
-        for (let i = 0; i <= visitedNodesInOrder.length; i++) {
-            if (i === visitedNodesInOrder.length) {
-                setTimeout(() => {
-                    animateShortestPath(nodesInShortestPathOrder);
-                }, 10 * i);
-                return;
-            }
-            setTimeout(() => {
-                const node = visitedNodesInOrder[i];
-                if (!node.isStart && !node.isFinish) { // Exclude start and finish nodes
-                    const nodeDiv = document.getElementById(`node-${node.row}-${node.col}`);
-                    if (nodeDiv) {
-                        nodeDiv.className = 'node node-visited';
-                    }
-                }
-            }, 10 * i);
-        }
-    };
-    
-    const animateShortestPath = (nodesInShortestPathOrder) => {
-        for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
-            setTimeout(() => {
-                const node = nodesInShortestPathOrder[i];
-                if (!node.isStart && !node.isFinish) { // Exclude start and finish nodes
-                    const nodeDiv = document.getElementById(`node-${node.row}-${node.col}`);
-                    if (nodeDiv) {
-                        nodeDiv.className = 'node node-shortest-path';
-                    }
-                }
-            }, 50 * i);
-        }
-        // Reset the animation state here after the shortest path is done animating
-        setTimeout(() => {
+        
+        animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder, () => {
             setIsAnimating(false);
-        }, 50 * nodesInShortestPathOrder.length);
+        });
     };
     
     const clearGrid = () => {
-        clearAllAnimations();
+        clearNodeAnimations(grid, getNodeClassName);
         const newGrid = createInitialGrid();
         setGrid(newGrid);
     };
