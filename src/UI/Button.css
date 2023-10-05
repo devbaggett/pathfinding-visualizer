@@ -1,0 +1,35 @@
+.base-button {
+    padding: 10px 20px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    color: var(--light-text-color);
+    transition: background-color var(--base-transition), transform 0.1s;
+}
+
+.base-button:active {
+    transform: translateY(2px);
+}
+
+.base-button:disabled {
+    background-color: var(--disabled-color) !important;
+    cursor: not-allowed;
+}
+
+.button-primary {
+    background-color: var(--primary-color);
+}
+
+.button-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.button-info {
+    background-color: var(--info-secondary-color);
+}
+
+.button-info:hover {
+    background-color: var(--info-secondary-hover-color);
+}

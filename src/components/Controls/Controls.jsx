@@ -1,3 +1,4 @@
+import Button from '../../UI/Button';
 import "./Controls.css";
 
 const Controls = (props) => {
@@ -9,12 +10,12 @@ const Controls = (props) => {
     
     return (
         <div className="controls">
-            <button onClick={visualizeDijkstra} disabled={isAnimating}>
+            <Button variant="button-primary control-button" onClick={visualizeDijkstra} disabled={isAnimating}>
                 Visualize Path
-            </button>
-            <button onClick={clearGrid} disabled={isAnimating}>
+            </Button>
+            <Button variant="button-primary control-button" onClick={clearGrid} disabled={isAnimating}>
                 Clear Grid
-            </button>
+            </Button>
         </div>
     );
 };

@@ -12,7 +12,8 @@ import { handleMouseDown, handleMouseEnter, handleMouseUp } from '../../utils/gr
 import Legend from '../../components/Legend/Legend';
 import Controls from '../../components/Controls/Controls';
 import Grid from '../../components/Grid/Grid';
-import Instructions from '../../components/Instructions/Instructions';
+import InstructionsModal from '../../components/InstructionsModal/InstructionsModal';
+import Button from '../../UI/Button';
 import "../../shared/common.css";
 import "./PathfindingVisualizer.css";
 
@@ -22,6 +23,7 @@ const PathfindingVisualizer = () => {
     const [nodesInShortestPathOrder, setNodesInShortestPathOrder] = useState([]);
     const [isAnimating, setIsAnimating] = useState(false);
     const [mouseIsPressed, setMouseIsPressed] = useState(false);
+    const [isInstructionsModalOpen, setIsInstructionsModalOpen] = useState(false);
     
     useEffect(() => {
         setTimeout(() => {
@@ -74,11 +76,17 @@ const PathfindingVisualizer = () => {
         handleMouseUp(setMouseIsPressed);
     }, []);
     
+    const toggleInstructionsModal = () => {
+        setIsInstructionsModalOpen(!isInstructionsModalOpen);
+    };
+    
     return (
         <div>
             <h1>Dijkstra Pathfinding Visualizer</h1>
-            <Instructions />
-            <Controls visualizeDijkstra={visualizeDijkstra} clearGrid={clearGrid} isAnimating={isAnimating} />
+            <div className="actions-container">
+                <Controls visualizeDijkstra={visualizeDijkstra} clearGrid={clearGrid} isAnimating={isAnimating} />
+                <Button variant="button-info" onClick={toggleInstructionsModal}>Instructions</Button>
+            </div>
             <Grid
                 grid={grid}
                 onMouseDown={handleGridMouseDown}
@@ -86,6 +94,7 @@ const PathfindingVisualizer = () => {
                 onMouseUp={handleGridMouseUp}
             />
             <Legend />
+            <InstructionsModal isOpen={isInstructionsModalOpen} onClose={toggleInstructionsModal} />
         </div>
     );
 };

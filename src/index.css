@@ -5,6 +5,8 @@
   --warning-color: #d5a55a;
   --success-color: #5ad57a;
   --info-color: #5a96d5;
+  --info-secondary-color: #17a2b8;
+  --info-secondary-hover-color: #138496;
   --light-text-color: #f1f1f1;
   --dark-text-color: #777;
   --neutral-color: #333;
@@ -15,6 +17,7 @@
   --wall-node-color: black;
   --shortest-path-node-color: aqua;
   --unvisited-node-color: #ffffff;
+  --disabled-color: #a4c0d0;
   --font-weight-bold: 900;
   --base-transition: 0.3s;
 }
@@ -38,4 +41,8 @@ body {
   color: #777;
   padding: 3rem;
   box-sizing: border-box;
+}
+
+body.modal-overlay-active {
+  overflow: hidden;
 }

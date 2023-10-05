@@ -12,3 +12,8 @@ h1 {
     opacity: 1;
     transform: translateY(0);
 }
+
+.actions-container {
+    display: flex;
+    justify-content: center;
+}
