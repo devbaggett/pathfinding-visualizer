@@ -2,6 +2,11 @@
 
 An interactive pathfinding algorithm simulator that lets users visualize Dijkstra's shortest path algorithm and understand grid-based routing.
 
+## Demo
+
+Check out the live demo **[here](https://devbaggett.github.io/pathfinding-visualizer/)** deployed on GitHub Pages. 
+Please note that this is currently optimized for large screens.
+
 ![Screenshot of the Pathfinding Visualizer](./public/screenshot.png)
 
 ## Features
@@ -47,17 +52,20 @@ An interactive pathfinding algorithm simulator that lets users visualize Dijkstr
 
 1. **Draw Walls**: Click and drag your mouse over the grid to create walls or obstacles.
 
-2. **Visualize Algorithm**: Click the "Visualize Path" button to start the visualization. The algorithm will find the shortest path considering the walls you've drawn.
+2. **Remove Walls**: Click and drag your mouse over existing walls or obstacles to remove them.
 
-3. **Clear Grid**: Reset the grid to its initial state by clicking the "Clear Grid" button.
+3. **Visualize Algorithm**: Click the "Visualize Path" button to start the visualization. The algorithm will find the shortest path considering the walls you've drawn.
+
+4. **Clear Grid**: Reset the grid to its initial state by clicking the "Clear Grid" button.
 
 ## Todo
 - Clean up the UI to be more aesthetically pleasing
 - Add more algorithms to visualize
-- Add feature to allow user to randomize and draw in wall patterns
 - Add animation effects
+- Allow user to randomize and draw in wall patterns
 - Allow user to select own start and end points
-- Allow user to stop in middle of pathfinding
+- Allow user to stop or pause in middle of pathfinding
+- Allow variable animation speed
 
 ## Contributing
 Feel free to fork this repository, make changes, and open a pull request if you think you've made improvements that should be shared.
