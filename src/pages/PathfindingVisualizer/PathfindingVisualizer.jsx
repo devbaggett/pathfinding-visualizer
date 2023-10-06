@@ -18,16 +18,19 @@ import "../../shared/common.css";
 import "./PathfindingVisualizer.css";
 
 const PathfindingVisualizer = () => {
+    const [isLoaded, setIsLoaded] = useState(false);
     const [grid, setGrid] = useState(createInitialGrid());
     const [visitedNodesInOrder, setVisitedNodesInOrder] = useState([]);
     const [nodesInShortestPathOrder, setNodesInShortestPathOrder] = useState([]);
     const [isAnimating, setIsAnimating] = useState(false);
     const [mouseIsPressed, setMouseIsPressed] = useState(false);
     const [isInstructionsModalOpen, setIsInstructionsModalOpen] = useState(false);
+    const [instructionsButtonClicked, setInstructionsButtonClicked] = useState(false);
+    const [instructionsButtonHighlighted, setInstructionsButtonHighlighted] = useState(true);
     
     useEffect(() => {
         setTimeout(() => {
-            document.body.classList.add('loaded');
+            setIsLoaded(true);
         }, 100);
     }, []);
     
@@ -77,15 +80,26 @@ const PathfindingVisualizer = () => {
     }, []);
     
     const toggleInstructionsModal = () => {
-        setIsInstructionsModalOpen(!isInstructionsModalOpen);
+        setIsInstructionsModalOpen(prevState => !prevState);
+        setInstructionsButtonClicked(true);
+        setInstructionsButtonHighlighted(false);
     };
     
     return (
-        <div>
+        <div className={isLoaded ? "loaded" : ""}>
             <h1>Dijkstra Pathfinding Visualizer</h1>
             <div className="actions-container">
                 <Controls visualizeDijkstra={visualizeDijkstra} clearGrid={clearGrid} isAnimating={isAnimating} />
-                <Button variant="button-info" onClick={toggleInstructionsModal}>Instructions</Button>
+                <Button
+                    variant={`
+                        button-info
+                        ${instructionsButtonClicked ? "clicked-once" : ""}
+                        ${instructionsButtonHighlighted ? "highlight" : ""}
+                    `}
+                    onClick={toggleInstructionsModal}
+                >
+                    Instructions
+                </Button>
             </div>
             <Grid
                 grid={grid}
