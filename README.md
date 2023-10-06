@@ -4,10 +4,9 @@ An interactive pathfinding algorithm simulator that lets users visualize Dijkstr
 
 ## Demo
 
-Check out the live demo **[here](https://devbaggett.github.io/pathfinding-visualizer/)** deployed on GitHub Pages. 
-Please note that this is currently optimized for large screens.
+Check out the live demo **[here](https://devbaggett.github.io/pathfinding-visualizer/)** deployed on GitHub Pages.
 
-![Screenshot of the Pathfinding Visualizer](./public/screenshot.png)
+![Screenshot of the Pathfinding Visualizer](./public/example.png)
 
 ## Features
 
@@ -75,3 +74,6 @@ This project is open-source and available under the MIT License.
 
 ## Acknowledgements
 Dijkstra's algorithm and the whole community of pathfinding enthusiasts.
+
+Clément Mihailescu - https://www.youtube.com/watch?v=msttfIHHkak
+
